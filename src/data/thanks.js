@@ -8,21 +8,21 @@
 
 export const specialThanks = [
   {
-    name: "Dr. Example Name",
-    qualification: "M.D. Psychiatry",
-    contribution: "Guided us through clinical validation of our psychometric instruments.",
+    name: "Dr. Rachana Patil",
+    qualification: "HOD, Computer Engineering (Regional Language)",
+    contribution: "Mentored the project from inception and provided academic support.",
     photo: "/thanks/thanks1.jpg",
   },
   {
-    name: "Prof. Example Name",
-    qualification: "HOD, Computer Engineering",
-    contribution: "Mentored the project from inception and provided academic support.",
+    name: "Dr. Vinayak Malwade",
+    qualification: "Project Mentor, PCCOE",
+    contribution: "Helped design the survey flow and provided mental health expertise.",
     photo: "/thanks/thanks2.jpg",
   },
   {
-    name: "Ms. Example Name",
-    qualification: "Certified Counselor, PCCOE",
-    contribution: "Helped design the survey flow and provided mental health expertise.",
-    photo: "/thanks/thanks3.jpg",
+    name: "Dr. Amol Jawale",
+    qualification: "M.D. Psychiatry",
+    contribution: "Guided us through clinical validation of our psychometric instruments.",
+    photo: "/thanks/thanks3.jpeg",
   },
 ];

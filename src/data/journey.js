@@ -31,7 +31,7 @@ export const journeyEvents = [
     title: "Choosing Our Instruments",
     description:
       "After research, we finalized GAD-7, PHQ-9, UCLA Loneliness Scale, and MSSQ-40 as our psychometric tools.",
-    imagePath: "/journey/journey3.jpg",
+    imagePath: "/journey/journey3.jpeg",
     imageAlt: "Research materials and psychometric instrument selection",
   },
   {
@@ -58,7 +58,7 @@ export const journeyEvents = [
     title: "Training the Model",
     description:
       "Collected 200+ responses and trained our ML model. Deployed on Hugging Face Spaces.",
-    imagePath: "/journey/hero.jpeg",
+    imagePath: "/journey/journey6.jpeg",
     imageAlt: "Team working on ML model training and deployment",
   },
 ];

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { questions, options } from "@/data/questions";
+import { questions } from "@/data/questions";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -108,30 +108,45 @@ export default function QuestionnairePage() {
     }
     setSubmitting(true);
 
-    // TODO: Confirm exact payload keys with Saheel if model returns 400
+    // Sleeping hours — "Less then" is intentional typo matching the dataset
+    const mapSleepingHours = (v) => {
+      if (v <= 4.5) return "Less then 5 hours";
+      if (v <= 6.5) return "5 to 6 hours";
+      if (v <= 8)   return "7 to 8 hours";
+      return "More than 8 hours";
+    };
+
+    const mapScreenTime = (v) => {
+      if (v <= 2)   return "Less than 2 hours";
+      if (v <= 4)   return "2 to 4 hours";
+      if (v <= 6)   return "4 to 6 hours";
+      return "More than 6 hours";
+    };
+
+    // All 14 question keys use the same frequency scale
+    const frequencyMap = ["Not at all", "Several days", "More than half the days", "Nearly every day"];
+    const f = (id) => frequencyMap[Math.min(answers[id], 3)];
+
+    // Sending ONLY the 14 keys the model expects (+ 2 demographic fields = 16 total).
+    // Keys q1, q3, q5, q13, q15, q16 are intentionally omitted — model doesn't use them.
+    // NOTE: If the API returns 422, verify key "20." below matches the dataset exactly.
     const payload = {
-      sleeping_hours: sleepingHours,
-      screen_time: screenTime,
-      q1:  answers["q1"],
-      q2:  answers["q2"],
-      q3:  answers["q3"],
-      q4:  answers["q4"],
-      q5:  answers["q5"],
-      q6:  answers["q6"],
-      q7:  answers["q7"],
-      q8:  answers["q8"],
-      q9:  answers["q9"],
-      q10: answers["q10"],
-      q11: answers["q11"],
-      q12: answers["q12"],
-      q13: answers["q13"],
-      q14: answers["q14"],
-      q15: answers["q15"],
-      q16: answers["q16"],
-      q17: answers["q17"],
-      q18: answers["q18"],
-      q19: answers["q19"],
-      q20: answers["q20"],
+      "Sleeping hours": mapSleepingHours(sleepingHours),
+      "Screening time": mapScreenTime(screenTime),
+      "2. Have you been feeling unusually sad, low, or hopeless about the future?":                                            f("q2"),
+      "4. Do you feel physically drained or out of energy, even without doing heavy work?":                                   f("q4"),
+      "6. Do you frequently feel like you are failing in life or letting your parents down?":                                 f("q6"),
+      "7. Is it hard for you to focus on lectures, reading assignments, or even watching a movie?":                          f("q7"),
+      "8. Do you often feel restless, nervous, or constantly \"on edge\"?":                                                  f("q8"),
+      "9. Do you find it impossible to stop worrying, even when you try to distract yourself?":                              f("q9"),
+      "10. Are you overthinking and stressing out about too many different things at once?":                                  f("q10"),
+      "11. Do you find it difficult to just sit back, relax, and clear your mind?":                                          f("q11"),
+      "12. Do you ever get a sudden feeling of panic, like something terrible is about to happen?":                          f("q12"),
+      "14. How much does the fear of failing exams or getting low grades stress you out?":                                   f("q14"),
+      "17. Does the feeling of \"falling behind\" the rest of the class in your studies cause you stress?":                  f("q17"),
+      "18. How often do you feel like you don't have close friends to genuinely talk to or hang out with?":                  f("q18"),
+      "19. How often do you feel ignored or left out by your peer group or classmates?":                                     f("q19"),
+      "20. How often do you feel completely disconnected or isolated from the people around you?":                            f("q20"),
     };
 
     try {
@@ -147,10 +162,11 @@ export default function QuestionnairePage() {
 
       const result = await response.json();
 
+      // result.prediction is a plain string (e.g. "Depressed" / "Not Depressed")
       navigate("/result", {
         state: {
           answers,
-          prediction: result,
+          prediction: result.prediction,
           demographics: { sleepingHours, screenTime },
         },
       });
@@ -343,7 +359,7 @@ export default function QuestionnairePage() {
                   onValueChange={handleAnswer}
                   className="gap-3"
                 >
-                  {options.map((opt) => {
+                  {currentQuestion.options.map((opt) => {
                     const isSelected = answers[currentQuestion.id] === opt.value;
                     return (
                       <Label

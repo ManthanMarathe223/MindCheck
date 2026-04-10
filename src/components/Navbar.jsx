@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, Menu, X, Moon, Sun, Leaf } from "lucide-react";
+import { LogOut, Menu, X, Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
 
 const scrollTop = () => window.scrollTo({ top: 0, behavior: "instant" });
@@ -44,9 +44,7 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <Link to="/" onClick={scrollTop} className="flex items-center gap-2.5 group">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary shadow-md group-hover:shadow-lg transition-shadow">
-            <Leaf className="h-5 w-5 text-primary-foreground" />
-          </div>
+          <img src="/logo.png" alt="MindCheck" className="h-10 w-10 object-contain mix-blend-multiply dark:mix-blend-screen" />
           <span className="font-heading text-2xl font-bold text-foreground tracking-tight">
             Mind<span className="text-primary">Check</span>
           </span>

@@ -35,12 +35,13 @@ const resources = [
 ];
 
 /**
- * Determine risk level from the prediction object.
- * TODO: Adjust this logic based on your actual API response format.
+ * Determine risk level from the prediction string returned by the API.
+ * QuestionnairePage passes result.prediction directly, so `prediction` is
+ * already a plain string (e.g. "Depressed", "Not Depressed").
  */
 function parseResult(prediction, answers) {
   if (!prediction) {
-    // Fallback if no prediction (API not available)
+    // Fallback: score-based estimate when API is unavailable
     const totalScore = Object.values(answers).reduce(
       (sum, v) => sum + parseInt(v, 10),
       0
@@ -58,15 +59,8 @@ function parseResult(prediction, answers) {
     };
   }
 
-  // Parse the prediction from the API
-  // TODO: Update these fields to match your actual API response keys
-  const predLabel =
-    prediction.prediction ||
-    prediction.result ||
-    prediction.label ||
-    "Unknown";
-
-  const score = prediction.score ?? prediction.confidence ?? null;
+  // prediction is a plain string from the API
+  const predLabel = typeof prediction === "string" ? prediction : String(prediction);
 
   // Determine risk level from prediction label
   const lowerLabel = predLabel.toLowerCase();
@@ -88,9 +82,9 @@ function parseResult(prediction, answers) {
   return {
     label: riskLabels[riskLevel],
     riskLevel,
-    score,
+    score: null,
     maxScore: null,
-    description: `Model prediction: ${predLabel}${score != null ? ` (confidence: ${typeof score === "number" ? (score * 100).toFixed(1) + "%" : score})` : ""}`,
+    description: `Model prediction: ${predLabel}`,
     isPlaceholder: false,
     rawPrediction: predLabel,
   };

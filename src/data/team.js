@@ -35,7 +35,7 @@ export const teamMembers = [
     name: "Team Member 4",
     role: "Research Lead",
     department: "Computer Engineering",
-    photo: "/team/team4.jpeg",
+    photo: "/team/team4.jpg",
     github: "https://github.com/",
     linkedin: "https://linkedin.com/in/",
   },
