@@ -4,9 +4,11 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import ProtectedRoute from "@/routes/ProtectedRoute";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "@/components/ui/sonner";
 
 // Pages
 import LandingPage from "@/pages/LandingPage";
+import OurJourneyPage from "@/pages/OurJourneyPage";
 import DatasetAnalysis from "@/pages/DatasetAnalysis";
 import QuestionnairePage from "@/pages/QuestionnairePage";
 import ResultPage from "@/pages/ResultPage";
@@ -21,6 +23,7 @@ export default function App() {
           <Routes>
             {/* Public routes */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/journey" element={<OurJourneyPage />} />
             <Route path="/dataset" element={<DatasetAnalysis />} />
             <Route path="/login" element={<AuthPage />} />
 
@@ -47,6 +50,7 @@ export default function App() {
           </Routes>
         </main>
         <Footer />
+        <Toaster richColors position="top-right" />
       </div>
     </AuthProvider>
   );

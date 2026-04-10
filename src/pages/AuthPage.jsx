@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Brain, Mail, Lock, AlertCircle, Loader2, HeartPulse } from "lucide-react";
+import { Leaf, Mail, Lock, AlertCircle, Loader2, HeartPulse } from "lucide-react";
 
 // Google icon (inline SVG — no extra lib)
 const GoogleIcon = () => (
@@ -71,26 +71,27 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-[hsl(var(--calm)/0.08)] flex items-center justify-center p-6">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-[hsl(var(--calm)/0.1)] blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-[hsl(var(--hope)/0.08)] blur-3xl" />
+    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--soft-green))] via-background to-[hsl(var(--soft-peach)/0.5)]" />
+        <div className="absolute top-1/4 left-1/4 h-72 w-72 rounded-full bg-primary/8 blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-[hsl(var(--accent)/0.06)] blur-3xl" />
       </div>
 
-      <div className="w-full max-w-md">
+      <div className="w-full max-w-md animate-scale-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-2 group">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
-              <Brain className="h-5 w-5 text-primary-foreground" />
+          <Link to="/" className="inline-flex items-center gap-2.5 group">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20 group-hover:shadow-primary/40 transition-shadow">
+              <Leaf className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-2xl font-bold text-foreground">
+            <span className="font-heading text-2xl font-bold text-foreground">
               Mind<span className="text-primary">Check</span>
             </span>
           </Link>
           <p className="text-sm text-muted-foreground mt-3 flex items-center justify-center gap-1.5">
-            <HeartPulse className="h-3.5 w-3.5 text-primary" />
+            <HeartPulse className="h-3.5 w-3.5 text-[hsl(var(--accent))]" />
             Your safe space for mental health awareness
           </p>
         </div>
@@ -104,7 +105,7 @@ export default function AuthPage() {
                 onClick={() => { setTab("login"); clearForm(); }}
                 className={`flex-1 rounded-md py-2 text-sm font-medium transition-all ${
                   tab === "login"
-                    ? "bg-background text-foreground shadow-sm"
+                    ? "bg-card text-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -115,14 +116,14 @@ export default function AuthPage() {
                 onClick={() => { setTab("signup"); clearForm(); }}
                 className={`flex-1 rounded-md py-2 text-sm font-medium transition-all ${
                   tab === "signup"
-                    ? "bg-background text-foreground shadow-sm"
+                    ? "bg-card text-foreground shadow-sm"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 Sign Up
               </button>
             </div>
-            <CardTitle className="text-xl">
+            <CardTitle className="font-heading text-xl">
               {tab === "login" ? "Welcome back" : "Create your account"}
             </CardTitle>
             <CardDescription>
@@ -193,7 +194,12 @@ export default function AuthPage() {
                 </div>
               )}
 
-              <Button id="btn-email-auth" type="submit" className="w-full" disabled={loading}>
+              <Button
+                id="btn-email-auth"
+                type="submit"
+                className="w-full bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent)/0.9)] text-white"
+                disabled={loading}
+              >
                 {loading ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : tab === "login" ? (

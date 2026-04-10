@@ -19,7 +19,7 @@ import {
   PIE_COLORS,
   CHART_COLORS,
 } from "@/data/chartData";
-import { BarChart3, PieChart as PieIcon, TrendingUp, Activity } from "lucide-react";
+import { BarChart3, PieChart as PieIcon, TrendingUp, Activity, AlertCircle } from "lucide-react";
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
@@ -37,10 +37,15 @@ export default function DatasetAnalysis() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="border-b border-border bg-gradient-to-r from-[hsl(var(--calm)/0.06)] via-muted/20 to-[hsl(var(--hope)/0.06)] py-14">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <Badge variant="secondary" className="mb-4">Dataset Insights</Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+      <section className="relative overflow-hidden py-20 md:py-24">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--soft-green))] via-background to-[hsl(var(--soft-peach)/0.3)]" />
+        </div>
+        <div className="mx-auto max-w-6xl px-6 text-center animate-fade-in-up">
+          <Badge variant="outline" className="mb-4 border-primary/30 text-primary">
+            Dataset Insights
+          </Badge>
+          <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
             Depression Dataset Analysis
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
@@ -55,13 +60,13 @@ export default function DatasetAnalysis() {
         <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
 
           {/* Chart 1 — Bar: Age Group */}
-          <Card className="border-border/60 hover:shadow-lg transition-shadow">
+          <Card className="border-border/60 hover:shadow-lg transition-shadow animate-fade-in-up delay-100">
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2 text-primary mb-1">
                 <BarChart3 className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider">Age Distribution</span>
               </div>
-              <CardTitle className="text-lg">Depression by Age Group</CardTitle>
+              <CardTitle className="font-heading text-lg">Depression by Age Group</CardTitle>
               <CardDescription>% of respondents classified as depressed vs. not depressed per age bracket</CardDescription>
             </CardHeader>
             <CardContent>
@@ -82,13 +87,13 @@ export default function DatasetAnalysis() {
           </Card>
 
           {/* Chart 2 — Pie: Class distribution */}
-          <Card className="border-border/60 hover:shadow-lg transition-shadow">
+          <Card className="border-border/60 hover:shadow-lg transition-shadow animate-fade-in-up delay-200">
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2 text-primary mb-1">
                 <PieIcon className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider">Class Balance</span>
               </div>
-              <CardTitle className="text-lg">Dataset Class Distribution</CardTitle>
+              <CardTitle className="font-heading text-lg">Dataset Class Distribution</CardTitle>
               <CardDescription>Proportion of depressed vs. non-depressed records in the dataset</CardDescription>
             </CardHeader>
             <CardContent className="flex items-center justify-center">
@@ -117,13 +122,13 @@ export default function DatasetAnalysis() {
           </Card>
 
           {/* Chart 3 — Line: PHQ score trend */}
-          <Card className="border-border/60 hover:shadow-lg transition-shadow">
+          <Card className="border-border/60 hover:shadow-lg transition-shadow animate-fade-in-up delay-300">
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2 text-primary mb-1">
                 <TrendingUp className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider">Score Trends</span>
               </div>
-              <CardTitle className="text-lg">Average PHQ-9 Score Over Time</CardTitle>
+              <CardTitle className="font-heading text-lg">Average PHQ-9 Score Over Time</CardTitle>
               <CardDescription>Monthly average symptom severity score across all respondents</CardDescription>
             </CardHeader>
             <CardContent>
@@ -150,13 +155,13 @@ export default function DatasetAnalysis() {
           </Card>
 
           {/* Chart 4 — Bar: Symptoms */}
-          <Card className="border-border/60 hover:shadow-lg transition-shadow">
+          <Card className="border-border/60 hover:shadow-lg transition-shadow animate-fade-in-up delay-400">
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2 text-primary mb-1">
                 <Activity className="h-4 w-4" />
                 <span className="text-xs font-medium uppercase tracking-wider">Symptom Frequency</span>
               </div>
-              <CardTitle className="text-lg">Most Common Symptoms</CardTitle>
+              <CardTitle className="font-heading text-lg">Most Common Symptoms</CardTitle>
               <CardDescription>Frequency count of reported symptoms across the depressed cohort</CardDescription>
             </CardHeader>
             <CardContent>
@@ -178,9 +183,10 @@ export default function DatasetAnalysis() {
 
         {/* Dataset info */}
         <div className="mx-auto max-w-6xl px-6 mt-8">
-          <Card className="border-dashed border-amber-500/40 bg-amber-500/5">
-            <CardContent className="pt-6 pb-6">
-              <p className="text-sm text-amber-600 dark:text-amber-400">
+          <Card className="border-dashed border-[hsl(var(--accent)/0.5)] bg-[hsl(var(--soft-peach))]">
+            <CardContent className="pt-6 pb-6 flex items-start gap-3">
+              <AlertCircle className="h-5 w-5 text-[hsl(var(--accent))] shrink-0 mt-0.5" />
+              <p className="text-sm text-foreground">
                 <strong>📊 Note:</strong> All charts above use hardcoded placeholder data for demonstration purposes.
                 {/* TODO: Replace with real dataset API call or CSV import */}
                 Real dataset integration will replace these values once the data pipeline is connected.

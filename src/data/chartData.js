@@ -42,13 +42,13 @@ export const symptomsData = [
   { symptom: "Concentration",   count: 310 },
 ];
 
-/** Pie chart colors — calm teal & soft lavender */
-export const PIE_COLORS = ["#3d9b8f", "#9b8ec4"];
+/** Pie chart colors — deep sage & warm orange */
+export const PIE_COLORS = ["#4A7C6F", "#F4A261"];
 
 /** Bar / Line chart colors */
 export const CHART_COLORS = {
-  depressed:    "#3d9b8f",
-  nonDepressed: "#9b8ec4",
-  line:         "#5ba8a0",
-  symptoms:     "#3d9b8f",
+  depressed:    "#4A7C6F",
+  nonDepressed: "#F4A261",
+  line:         "#4A7C6F",
+  symptoms:     "#4A7C6F",
 };

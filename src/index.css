@@ -1,76 +1,68 @@
 @import "tailwindcss";
 
-
 @custom-variant dark (&:is(.dark *));
 
-/* ─── Light Theme: Calming, therapeutic palette ─── */
+/* ─── MindCheck Design System ─── */
+/* Warm, human-feel TweakCN theme */
+
 :root {
-  --background: 210 30% 98%;
-  --foreground: 220 25% 14%;
+  --background: 45 30% 97%;
+  --foreground: 220 20% 12%;
   --card: 0 0% 100%;
-  --card-foreground: 220 25% 14%;
+  --card-foreground: 220 20% 12%;
   --popover: 0 0% 100%;
-  --popover-foreground: 220 25% 14%;
-  --primary: 174 52% 38%;
-  --primary-foreground: 170 30% 98%;
-  --secondary: 180 18% 93%;
-  --secondary-foreground: 220 20% 18%;
-  --muted: 180 14% 94%;
-  --muted-foreground: 215 14% 46%;
-  --accent: 260 40% 92%;
-  --accent-foreground: 262 30% 30%;
+  --popover-foreground: 220 20% 12%;
+  --primary: 161 25% 38%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 45 30% 92%;
+  --secondary-foreground: 220 20% 20%;
+  --muted: 45 20% 94%;
+  --muted-foreground: 220 10% 50%;
+  --accent: 27 87% 67%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 72% 51%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 200 18% 88%;
-  --input: 200 18% 88%;
-  --ring: 174 52% 38%;
-  --radius: 0.75rem;
+  --destructive-foreground: 0 0% 100%;
+  --border: 45 20% 88%;
+  --input: 45 20% 88%;
+  --ring: 161 25% 38%;
+  --radius: 0.6rem;
+  --soft-green: 138 40% 94%;
+  --soft-peach: 27 80% 95%;
 
-  /* Semantic mental-health accent colors */
-  --calm: 174 52% 38%;
-  --hope: 260 45% 65%;
-  --warmth: 28 75% 62%;
-  --serenity: 200 40% 60%;
-
-  --chart-1: 174 52% 38%;
-  --chart-2: 260 45% 65%;
+  /* Chart colors */
+  --chart-1: 161 25% 38%;
+  --chart-2: 27 87% 67%;
   --chart-3: 200 40% 55%;
-  --chart-4: 28 75% 62%;
-  --chart-5: 340 45% 56%;
+  --chart-4: 340 45% 56%;
+  --chart-5: 260 40% 58%;
 }
 
-/* ─── Dark Theme: Deep, soothing night palette ─── */
+/* ─── Dark Theme ─── */
 .dark {
-  --background: 220 25% 7%;
-  --foreground: 210 25% 92%;
-  --card: 220 22% 10%;
-  --card-foreground: 210 25% 92%;
-  --popover: 220 22% 10%;
-  --popover-foreground: 210 25% 92%;
-  --primary: 174 50% 45%;
-  --primary-foreground: 220 25% 7%;
-  --secondary: 220 18% 16%;
-  --secondary-foreground: 210 25% 92%;
-  --muted: 220 18% 16%;
-  --muted-foreground: 215 15% 58%;
-  --accent: 260 30% 22%;
-  --accent-foreground: 260 40% 82%;
-  --destructive: 0 62% 40%;
-  --destructive-foreground: 0 0% 98%;
-  --border: 220 18% 18%;
-  --input: 220 18% 18%;
-  --ring: 174 50% 45%;
+  --background: 220 20% 8%;
+  --foreground: 45 20% 92%;
+  --card: 220 18% 11%;
+  --card-foreground: 45 20% 92%;
+  --primary: 161 30% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 15% 16%;
+  --secondary-foreground: 45 20% 85%;
+  --muted: 220 15% 14%;
+  --muted-foreground: 220 10% 55%;
+  --accent: 27 87% 67%;
+  --accent-foreground: 0 0% 100%;
+  --border: 220 15% 18%;
+  --input: 220 15% 18%;
+  --ring: 161 30% 52%;
 
-  --calm: 174 50% 45%;
-  --hope: 260 40% 60%;
-  --warmth: 28 65% 55%;
-  --serenity: 200 35% 50%;
+  --soft-green: 161 20% 14%;
+  --soft-peach: 27 30% 14%;
 
-  --chart-1: 174 50% 45%;
-  --chart-2: 260 40% 58%;
+  --chart-1: 161 30% 52%;
+  --chart-2: 27 87% 67%;
   --chart-3: 200 35% 50%;
-  --chart-4: 28 65% 55%;
-  --chart-5: 340 50% 50%;
+  --chart-4: 340 50% 50%;
+  --chart-5: 260 35% 55%;
 }
 
 @theme inline {
@@ -112,19 +104,66 @@ body {
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* ─── Smooth dark mode transition ─── */
-html.transitioning * {
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease !important;
+/* ─── Typography helpers ─── */
+.font-heading {
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
-/* ─── Scrollbar styling ─── */
+/* ─── Fade-in animation ─── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out both;
+}
+
+/* Staggered delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+
+/* ─── Scrollbar ─── */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -139,8 +178,54 @@ html.transitioning * {
   background: hsl(var(--muted-foreground) / 0.5);
 }
 
-/* ─── Selection color ─── */
+/* ─── Selection ─── */
 ::selection {
-  background: hsl(var(--primary) / 0.2);
+  background: hsl(var(--primary) / 0.15);
   color: hsl(var(--foreground));
 }
+
+/* ─── Glassmorphism helper ─── */
+.glass {
+  background: hsl(var(--background) / 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ─── Hero Slideshow ─── */
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes heroFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+.hero-slide-enter {
+  animation: heroFadeIn 1s ease-in-out forwards;
+}
+.hero-slide-exit {
+  animation: heroFadeOut 1s ease-in-out forwards;
+}
+@keyframes slideTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-text-animate {
+  animation: slideTextIn 0.8s ease-out 0.3s both;
+}
+
+/* ─── Photo Slider ─── */
+.slider-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.slider-track > * {
+  flex-shrink: 0;
+}
+
