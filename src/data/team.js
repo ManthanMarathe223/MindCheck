@@ -8,7 +8,7 @@
 
 export const teamMembers = [
   {
-    name: "Team Member 1",
+    name: "Saheel Shaikh",
     role: "ML & Backend",
     department: "Computer Engineering",
     photo: "/team/team1.jpeg",
@@ -16,7 +16,7 @@ export const teamMembers = [
     linkedin: "https://linkedin.com/in/",
   },
   {
-    name: "Team Member 2",
+    name: "Aakriti Shringare",
     role: "Frontend & UI",
     department: "Computer Engineering",
     photo: "/team/team2.jpeg",
@@ -24,7 +24,7 @@ export const teamMembers = [
     linkedin: "https://linkedin.com/in/",
   },
   {
-    name: "Team Member 3",
+    name: "Swaraj Matre",
     role: "Data Analysis",
     department: "Computer Engineering",
     photo: "/team/team3.jpeg",
@@ -32,7 +32,7 @@ export const teamMembers = [
     linkedin: "https://linkedin.com/in/",
   },
   {
-    name: "Team Member 4",
+    name: "Manthan Marathe",
     role: "Research Lead",
     department: "Computer Engineering",
     photo: "/team/team4.jpg",

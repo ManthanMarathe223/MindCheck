@@ -1,6 +1,5 @@
 // src/pages/OurJourneyPage.jsx
-import { journeyEvents, fieldWorkPhotos } from "@/data/journey";
-import { specialThanks } from "@/data/thanks";
+import { journeyEvents, galleryPhotos } from "@/data/journey";
 import { Badge } from "@/components/ui/badge";
 import { useState } from "react";
 
@@ -36,7 +35,7 @@ function TimelineImage({ src, alt, stepNumber }) {
   );
 }
 
-/* ── Gallery Image (masonry grid) ── */
+/* ── Gallery Image ── */
 function GalleryImage({ src, index }) {
   const [err, setErr] = useState(false);
 
@@ -52,7 +51,7 @@ function GalleryImage({ src, index }) {
   if (err || !src) {
     return (
       <div
-        className={`w-full aspect-[4/3] rounded-xl bg-gradient-to-br ${gradients[index % gradients.length]} flex items-center justify-center`}
+        className={`w-full h-[220px] rounded-xl bg-gradient-to-br ${gradients[index % gradients.length]} flex items-center justify-center`}
       >
         <span className="text-3xl font-bold text-primary/20 font-heading">{index + 1}</span>
       </div>
@@ -62,41 +61,15 @@ function GalleryImage({ src, index }) {
     <div className="overflow-hidden rounded-xl group">
       <img
         src={src}
-        alt={`Field work ${index + 1}`}
+        alt={`Gallery photo ${index + 1}`}
         onError={() => setErr(true)}
-        className="w-full aspect-[4/3] object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
+        className="w-full h-[220px] object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
       />
     </div>
   );
 }
 
-/* ── Thanks Photo ── */
-function ThanksPhoto({ src, name }) {
-  const [err, setErr] = useState(false);
-  const initials = name
-    .split(" ")
-    .filter((w) => w.length > 0)
-    .map((w) => w[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
 
-  if (err || !src) {
-    return (
-      <div className="w-36 h-36 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-primary/20 to-[hsl(var(--soft-peach))] flex items-center justify-center mx-auto border-4 border-[hsl(var(--accent)/0.3)]">
-        <span className="text-3xl font-bold text-primary font-heading">{initials}</span>
-      </div>
-    );
-  }
-  return (
-    <img
-      src={src}
-      alt={name}
-      onError={() => setErr(true)}
-      className="w-36 h-36 md:w-40 md:h-40 rounded-full object-cover mx-auto border-4 border-[hsl(var(--accent)/0.3)] shadow-lg"
-    />
-  );
-}
 
 export default function OurJourneyPage() {
   return (
@@ -142,7 +115,6 @@ export default function OurJourneyPage() {
 
                     {/* Mobile: stacked layout (text then image) */}
                     <div className="pl-8 md:hidden">
-                      <p className="text-xs font-medium text-primary mb-0.5">{event.date}</p>
                       <h3 className="font-heading text-base font-bold text-foreground">{event.title}</h3>
                       <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{event.description}</p>
                       <div className="mt-4">
@@ -159,7 +131,6 @@ export default function OurJourneyPage() {
                       {isLeft ? (
                         <>
                           <div className="text-right pr-8 flex flex-col justify-center">
-                            <p className="text-xs font-medium text-primary mb-0.5">{event.date}</p>
                             <h3 className="font-heading text-lg font-bold text-foreground">{event.title}</h3>
                             <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{event.description}</p>
                           </div>
@@ -183,7 +154,6 @@ export default function OurJourneyPage() {
                             </div>
                           </div>
                           <div className="pl-8 flex flex-col justify-center">
-                            <p className="text-xs font-medium text-primary mb-0.5">{event.date}</p>
                             <h3 className="font-heading text-lg font-bold text-foreground">{event.title}</h3>
                             <p className="text-sm text-muted-foreground mt-1 leading-relaxed">{event.description}</p>
                           </div>
@@ -203,9 +173,11 @@ export default function OurJourneyPage() {
         </div>
       </section>
 
-      {/* ── Field Work Gallery (Masonry Grid only — no slider) ── */}
+      {/* ── Field Work Gallery ── */}
       <section className="py-16 md:py-20 bg-[hsl(var(--soft-green))]">
         <div className="mx-auto max-w-6xl px-6">
+          {/* Gallery images: place photos in /public/gallery/ */}
+          {/* Naming: gallery1.jpeg to gallery10.jpeg */}
           <div className="text-center mb-12 animate-fade-in-up">
             <p className="text-sm font-medium text-primary uppercase tracking-wider mb-2">Gallery</p>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
@@ -213,13 +185,13 @@ export default function OurJourneyPage() {
             </h2>
           </div>
 
-          {/* Masonry-style grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {fieldWorkPhotos.map((photo, i) => (
+          {/* 4-col desktop, 2-col mobile grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {galleryPhotos.map((photo, i) => (
               <div
                 key={i}
                 className="animate-fade-in-up"
-                style={{ animationDelay: `${(i + 1) * 80}ms` }}
+                style={{ animationDelay: `${(i + 1) * 60}ms` }}
               >
                 <GalleryImage src={photo} index={i} />
               </div>
@@ -228,39 +200,6 @@ export default function OurJourneyPage() {
         </div>
       </section>
 
-      {/* ── Special Thanks ── */}
-      <section className="py-24 md:py-28 bg-gradient-to-b from-background to-[hsl(var(--soft-peach)/0.4)]">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="text-center mb-16 animate-fade-in-up">
-            <p className="text-sm font-medium text-[hsl(var(--accent))] uppercase tracking-wider mb-2">Gratitude</p>
-            <h2 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Special Thanks
-            </h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-              This project would not have been possible without the guidance and support of these incredible people.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {specialThanks.map((person, i) => (
-              <div
-                key={person.name}
-                className="flex flex-col items-center text-center gap-5 animate-fade-in-up"
-                style={{ animationDelay: `${(i + 1) * 150}ms` }}
-              >
-                <ThanksPhoto src={person.photo} name={person.name} />
-                <div>
-                  <h3 className="font-heading text-xl font-bold text-foreground">{person.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{person.qualification}</p>
-                  <p className="text-sm text-foreground/80 mt-3 leading-relaxed italic">
-                    "{person.contribution}"
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

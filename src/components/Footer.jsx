@@ -1,5 +1,5 @@
 // src/components/Footer.jsx
-import { Leaf, Heart, Phone } from "lucide-react";
+import { Heart, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -10,9 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-1 flex flex-col gap-3">
             <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <Leaf className="h-4 w-4 text-primary-foreground" />
-              </div>
+              <img src="/logo.png" alt="MindCheck" className="h-8 w-8 object-contain mix-blend-multiply dark:mix-blend-screen" />
               <span className="font-heading font-bold text-lg text-foreground">
                 Mind<span className="text-primary">Check</span>
               </span>
@@ -59,7 +57,7 @@ export default function Footer() {
 
         <div className="mt-12 border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-muted-foreground flex items-center gap-1">
-            Made with <Heart className="h-3 w-3 text-[hsl(var(--accent))] fill-[hsl(var(--accent))]" /> by the MindCheck Team · PCCOE CEP 2024–25
+            Made with <Heart className="h-3 w-3 text-[hsl(var(--accent))] fill-[hsl(var(--accent))]" /> by the MindCheck Team · PCCOE CEP 2026
           </p>
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} MindCheck. All rights reserved.

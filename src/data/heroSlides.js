@@ -24,7 +24,7 @@ export const heroSlides = [
   },
   {
     image: "/hero/hero4.jpeg",
-    heading: "200+ Responses and Counting",
+    heading: "1000+ Responses and Counting",
     subtext: "Real data from real people",
   },
   {

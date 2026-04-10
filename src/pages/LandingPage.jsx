@@ -87,7 +87,7 @@ const aboutCards = [
 ];
 
 const stats = [
-  { value: "450+", label: "Survey Responses" },
+  { value: "1000+", label: "Survey Responses" },
   { value: "4", label: "Validated Instruments" },
   { value: "1", label: "College Community" },
 ];
@@ -219,7 +219,7 @@ export default function LandingPage() {
                 className="mb-6 gap-2 border-white/30 text-white/90 px-4 py-1.5 text-xs font-medium hero-text-animate"
               >
                 <Lightbulb className="h-3.5 w-3.5" />
-                PCCOE Community Engagement Project · 2024–25
+                PCCOE Community Engagement Project · 2026
               </Badge>
 
               <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white mb-4 leading-tight hero-text-animate">
@@ -244,7 +244,7 @@ export default function LandingPage() {
                   variant="outline"
                   size="lg"
                   asChild
-                  className="gap-2 border-white/30 text-white hover:bg-white/10"
+                  className="gap-2 border-2 border-white text-white bg-white/20 hover:bg-white/30 backdrop-blur-sm font-medium"
                 >
                   <a href="#about">
                     Learn More <ChevronDown className="h-4 w-4" />
@@ -536,26 +536,20 @@ export default function LandingPage() {
                   </div>
                   <div className="p-5 text-center">
                     <h3 className="font-heading text-lg font-bold text-foreground">{member.name}</h3>
-                    <p className="text-sm text-primary font-medium mt-0.5">{member.role}</p>
+                    {/* role and github fields kept for reference but not displayed */}
                     <p className="text-xs text-muted-foreground mt-0.5">{member.department}</p>
-                    <div className="flex justify-center gap-3 mt-4">
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-colors"
-                      >
-                        <GithubIcon className="h-4 w-4" />
-                      </a>
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-colors"
-                      >
-                        <LinkedinIcon className="h-4 w-4" />
-                      </a>
-                    </div>
+                    {member.linkedin && member.linkedin !== "https://linkedin.com/in/" && (
+                      <div className="flex justify-center mt-4">
+                        <a
+                          href={member.linkedin}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-colors"
+                        >
+                          <LinkedinIcon className="h-4 w-4" />
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
