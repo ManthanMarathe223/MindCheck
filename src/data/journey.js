@@ -59,16 +59,16 @@ export const journeyEvents = [
 // Gallery images: place photos in /public/gallery/
 // Naming: gallery1.jpeg, gallery2.jpeg ... gallery12.jpeg
 export const galleryPhotos = [
-  "/gallery/gallery1.HEIC",
-  "/gallery/gallery2.HEIC",
-  "/gallery/gallery3.HEIC",
-  "/gallery/gallery4.HEIC",
-  "/gallery/gallery5.jpg",
-  "/gallery/gallery6.jpg",
+  "/gallery/gallery1.jpg",
+  "/gallery/gallery2.jpg",
+  "/gallery/gallery3.jpg",
+  "/gallery/gallery4.jpg",
+  "/gallery/gallery5.webp",
+  "/gallery/gallery6.webp",
   "/gallery/gallery7.jpeg",
-  "/gallery/gallery8.jpg",
+  "/gallery/gallery8.webp",
   "/gallery/gallery9.jpeg",
-  "/gallery/gallery10.jpeg",
-  "/gallery/gallery11.jpeg",
+  "/gallery/gallery10.jpg",
+  "/gallery/gallery11.jpg",
   "/gallery/gallery12.jpeg",
 ];
