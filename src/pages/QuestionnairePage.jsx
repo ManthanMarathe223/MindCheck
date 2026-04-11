@@ -10,6 +10,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Slider } from "@/components/ui/slider";
+import { Input } from "@/components/ui/input";
 import {
   Leaf,
   ChevronRight,
@@ -20,6 +21,7 @@ import {
   Moon,
   Monitor,
   AlertCircle,
+  User,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -68,6 +70,8 @@ export default function QuestionnairePage() {
   // Demographics
   const [sleepingHours, setSleepingHours] = useState(7);
   const [screenTime, setScreenTime] = useState(5);
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
 
   // Derived
   const totalSteps = questions.length + 1; // +1 for demographics
@@ -167,7 +171,7 @@ export default function QuestionnairePage() {
         state: {
           answers,
           prediction: result.prediction,
-          demographics: { sleepingHours, screenTime },
+          demographics: { sleepingHours, screenTime, age, gender },
         },
       });
     } catch (err) {
@@ -307,6 +311,52 @@ export default function QuestionnairePage() {
                   <span>1 hr</span>
                   <span>16 hrs</span>
                 </div>
+              </div>
+
+              {/* Age */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <User className="h-4 w-4 text-primary" />
+                  <Label htmlFor="age-input" className="text-sm font-medium text-foreground">
+                    Your Age <span className="text-muted-foreground font-normal">(optional)</span>
+                  </Label>
+                </div>
+                <Input
+                  id="age-input"
+                  type="number"
+                  min={15}
+                  max={35}
+                  placeholder="e.g. 20"
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
+                  className="max-w-[160px]"
+                />
+              </div>
+
+              {/* Gender */}
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <User className="h-4 w-4 text-primary" />
+                  <Label className="text-sm font-medium text-foreground">
+                    Gender <span className="text-muted-foreground font-normal">(optional)</span>
+                  </Label>
+                </div>
+                <RadioGroup value={gender} onValueChange={setGender} className="flex flex-wrap gap-3">
+                  {["Male", "Female", "Prefer not to say"].map((opt) => (
+                    <Label
+                      key={opt}
+                      htmlFor={`gender-${opt}`}
+                      className={`flex items-center gap-2 px-4 py-2 rounded-xl border cursor-pointer transition-all duration-150 ${
+                        gender === opt
+                          ? "border-primary bg-[hsl(var(--soft-green))] shadow-sm"
+                          : "border-border bg-muted/20 hover:border-primary/40 hover:bg-[hsl(var(--soft-green)/0.3)]"
+                      }`}
+                    >
+                      <RadioGroupItem value={opt} id={`gender-${opt}`} />
+                      <span className="text-sm font-normal text-foreground">{opt}</span>
+                    </Label>
+                  ))}
+                </RadioGroup>
               </div>
             </CardContent>
           </Card>

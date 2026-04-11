@@ -17,9 +17,6 @@ import {
   Leaf,
   AlertCircle,
   RefreshCw,
-  HeartPulse,
-  Phone,
-  BookOpen,
   ArrowLeft,
   CheckCircle2,
   ShieldAlert,
@@ -28,11 +25,12 @@ import {
   User,
 } from "lucide-react";
 
-const resources = [
-  { icon: <Phone className="h-4 w-4" />, title: "iCall Helpline", desc: "9152987821", href: "tel:9152987821" },
-  { icon: <HeartPulse className="h-4 w-4" />, title: "Vandrevala Foundation", desc: "1860-2662-345", href: "tel:18602662345" },
-  { icon: <BookOpen className="h-4 w-4" />, title: "PHQ-9 Screener Info", desc: "phqscreeners.com", href: "https://www.phqscreeners.com/" },
-];
+const headingMap = {
+  "Mild Risk": "Mild Risk Detected",
+  "Moderate Risk": "Moderate Risk Detected",
+  "High Risk": "High Risk Detected",
+  "Extreme Risk": "Extreme Risk Detected",
+};
 
 /**
  * Determine risk level from the prediction string returned by the API.
@@ -144,7 +142,7 @@ export default function ResultPage() {
               </div>
             </div>
             <CardTitle className={`font-heading text-3xl font-bold ${colors.labelColor}`}>
-              {result.label}
+              {headingMap[prediction] ?? result.label}
             </CardTitle>
             {result.score != null && (
               <CardDescription className="mt-1">
@@ -208,14 +206,14 @@ export default function ResultPage() {
                       <User className="h-4 w-4 text-primary shrink-0" />
                       <div>
                         <p className="text-xs text-muted-foreground">Age</p>
-                        <p className="font-medium text-foreground">{demographics.age}</p>
+                        <p className="font-medium text-foreground">{demographics.age || "—"}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-2 p-3 rounded-lg bg-muted/40 text-sm">
                       <User className="h-4 w-4 text-primary shrink-0" />
                       <div>
                         <p className="text-xs text-muted-foreground">Gender</p>
-                        <p className="font-medium text-foreground">{demographics.gender}</p>
+                        <p className="font-medium text-foreground">{demographics.gender || "—"}</p>
                       </div>
                     </div>
                   </div>
@@ -249,26 +247,7 @@ export default function ResultPage() {
               </div>
             </div>
 
-            <Separator />
 
-            {/* Resources */}
-            <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3 font-heading">Mental Health Resources</h3>
-              <div className="flex flex-col gap-3">
-                {resources.map((r) => (
-                  <a key={r.title} href={r.href} target="_blank" rel="noreferrer"
-                    className="flex items-center gap-3 p-3 rounded-xl border border-border/60 hover:border-primary/30 hover:bg-[hsl(var(--soft-green)/0.3)] transition-all group">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--soft-green))] text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                      {r.icon}
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-foreground">{r.title}</p>
-                      <p className="text-xs text-muted-foreground">{r.desc}</p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
           </CardContent>
         </Card>
 

@@ -1,5 +1,5 @@
 // src/components/Footer.jsx
-import { Heart, Phone } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -29,22 +29,7 @@ export default function Footer() {
             <Link to="/questionnaire" className="text-sm text-muted-foreground hover:text-primary transition-colors">Self Assessment</Link>
           </div>
 
-          {/* Crisis Resources */}
-          <div className="flex flex-col gap-3">
-            <h4 className="text-sm font-semibold text-foreground font-heading flex items-center gap-1.5">
-              <Phone className="h-3.5 w-3.5 text-[hsl(var(--accent))]" />
-              Crisis Helplines
-            </h4>
-            <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">iCall:</strong> 9152987821
-            </p>
-            <p className="text-sm text-muted-foreground">
-              <strong className="text-foreground">Vandrevala:</strong> 1860-2662-345
-            </p>
-            <p className="text-xs text-muted-foreground mt-1 italic">
-              You're never alone. Reach out if you need help.
-            </p>
-          </div>
+
 
           {/* Disclaimer */}
           <div className="flex flex-col gap-3">
