@@ -75,6 +75,15 @@ export default function Navbar() {
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
 
+          {/* Take Assessment CTA — always visible beside auth */}
+          <Button
+            size="sm"
+            asChild
+            className="bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent)/0.9)] text-white gap-2 shadow-md"
+          >
+            <Link to="/questionnaire" onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}>Take Assessment</Link>
+          </Button>
+
           {user ? (
             <div className="flex items-center gap-3">
               {/* User avatar */}
@@ -87,18 +96,9 @@ export default function Navbar() {
               </Button>
             </div>
           ) : (
-            <>
-              <Button variant="ghost" size="sm" asChild>
-                <Link to="/login" onClick={scrollTop}>Login</Link>
-              </Button>
-              <Button
-                size="sm"
-                asChild
-                className="bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent)/0.9)] text-white shadow-md"
-              >
-                <Link to="/questionnaire" onClick={scrollTop}>Take the Test</Link>
-              </Button>
-            </>
+            <Button variant="ghost" size="sm" asChild>
+              <Link to="/login" onClick={scrollTop}>Login</Link>
+            </Button>
           )}
         </div>
 
@@ -134,24 +134,24 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          {/* Take Assessment CTA — always visible in mobile menu */}
+          <Button
+            size="sm"
+            asChild
+            className="bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent)/0.9)] text-white gap-2"
+            onClick={() => { setMenuOpen(false); window.scrollTo({ top: 0, behavior: 'instant' }); }}
+          >
+            <Link to="/questionnaire">Take Assessment</Link>
+          </Button>
+
           {user ? (
             <Button variant="outline" size="sm" onClick={() => { handleLogout(); setMenuOpen(false); }}>
               <LogOut className="h-4 w-4 mr-2" /> Logout
             </Button>
           ) : (
-            <div className="flex flex-col gap-2">
-              <Button variant="ghost" size="sm" asChild onClick={() => { setMenuOpen(false); scrollTop(); }}>
-                <Link to="/login">Login</Link>
-              </Button>
-              <Button
-                size="sm"
-                asChild
-                className="bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent)/0.9)] text-white"
-                onClick={() => { setMenuOpen(false); scrollTop(); }}
-              >
-                <Link to="/questionnaire">Take the Test</Link>
-              </Button>
-            </div>
+            <Button variant="ghost" size="sm" asChild onClick={() => { setMenuOpen(false); scrollTop(); }}>
+              <Link to="/login">Login</Link>
+            </Button>
           )}
         </div>
       )}

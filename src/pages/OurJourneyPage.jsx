@@ -1,7 +1,10 @@
 // src/pages/OurJourneyPage.jsx
 import { journeyEvents, galleryPhotos } from "@/data/journey";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { HeartPulse } from "lucide-react";
 
 /* ── Timeline Image ── */
 function TimelineImage({ src, alt, stepNumber }) {
@@ -196,6 +199,44 @@ export default function OurJourneyPage() {
                 <GalleryImage src={photo} index={i} />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA Section ── */}
+      <section className="py-20 md:py-28">
+        <div className="mx-auto max-w-3xl px-6 text-center">
+          <div
+            className="rounded-3xl px-8 py-16 md:py-20 animate-fade-in-up"
+            style={{
+              background:
+                "linear-gradient(135deg, hsl(var(--soft-green)) 0%, hsl(var(--background)) 50%, hsl(var(--soft-peach)/0.5) 100%)",
+            }}
+          >
+            <div className="mb-6 flex justify-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[hsl(var(--accent)/0.12)]">
+                <HeartPulse className="h-8 w-8 text-[hsl(var(--accent))]" />
+              </div>
+            </div>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Ready to Take the Assessment?
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+              Answer 20 questions and get your mental well-being report in minutes.
+            </p>
+            <Button
+              size="lg"
+              className="bg-[hsl(var(--accent))] hover:bg-[hsl(var(--accent)/0.9)] text-white gap-2 px-8 shadow-md"
+              asChild
+            >
+              <Link
+                to="/questionnaire"
+                onClick={() => window.scrollTo({ top: 0, behavior: "instant" })}
+              >
+                <HeartPulse className="h-5 w-5" />
+                Start Assessment
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
